@@ -13,18 +13,11 @@ import './style/index.less';
 
 const router = createBrowserRouter(routes);
 
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <div>Hello world!</div>,
-//   },
-// ]);
 console.log(routes, router)
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
-      {/* <App /> */}
       <RouterProvider router={router} />
     </Provider>
   </React.StrictMode>
