@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const version = "v1";
-const API_URL = `https://api.bitpin.org/${version}/`;
+// const API_URL = `https://api.bitpin.org/${version}/`;
+const API_URL = `https://reqres.in/api`;
 
 axios.defaults.baseURL = API_URL;
 axios.defaults.timeout = 6000;

@@ -11,6 +11,9 @@ const mainRoutes = [
         path: "/",
         element: <Main />,
         errorElement: <ErrorPage />,
+        loader: async () => {
+            return { list: [] };
+        },
         // loader: rootLoader,
         // action: rootAction,
         children: [
