@@ -7,9 +7,7 @@ const Main = () => {
 
     return (
         <>
-            <Suspense
-                fallback={<p>Loading ...</p>}
-            >
+            <Suspense fallback={<p>Loading ...</p>} >
                 <Outlet />
             </Suspense>
         </>

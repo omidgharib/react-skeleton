@@ -8,7 +8,6 @@ import {
 } from "react-router-dom";
 import routes from "./routes"
 import './style/index.less';
-// import IRoute from "./interfaces/IRoute";
 
 const router = createBrowserRouter(routes);
 
