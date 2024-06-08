@@ -1,11 +1,11 @@
 import { ITask } from './ITask'
 
 export interface ITaskDaySheet {
-    date: string
-    checked: boolean
+  date: string
+  checked: boolean
 }
 
 export interface ITaskMonthSheet {
-    task: ITask
-    days: ITaskDaySheet[]
+  task: ITask
+  days: ITaskDaySheet[]
 }

@@ -1,26 +1,23 @@
-import React from 'react'
-import { Button, Form, Input } from 'antd'
-
-import { login } from '../../services/api'
+// import { login } from '../../services/api'
 
 const Header = () => {
-    const onFinish = async (values: any) => {
-        console.log('Success:', values)
-        const user = {
-            ...values,
-        }
-        const res = await login(user)
-        // dispatch(addTask(task));
-    }
+  // const onFinish = async (values: any) => {
+  //     console.log('Success:', values)
+  //     const user = {
+  //         ...values,
+  //     }
+  //     const res = await login(user)
+  //     // dispatch(addTask(task));
+  // }
 
-    const onFinishFailed = (errorInfo: any) => {
-        console.log('Failed:', errorInfo)
-    }
+  // const onFinishFailed = (errorInfo: any) => {
+  //     console.log('Failed:', errorInfo)
+  // }
 
-    return (
-        <div className=''>
-            header
-            {/* <Form
+  return (
+    <div className=''>
+      header
+      {/* <Form
                 name="basic"
                 labelCol={{ span: 8 }}
                 wrapperCol={{ span: 16 }}
@@ -49,8 +46,8 @@ const Header = () => {
                     </Button>
                 </Form.Item>
             </Form> */}
-        </div>
-    )
+    </div>
+  )
 }
 
 export default Header

@@ -1,4 +1,4 @@
-import tailwindConfig from 'tailwind.config.js'; // IMPORTANT that the path is NOT relative, only the file name
-import resolveConfig from 'tailwindcss/resolveConfig';
+import tailwindConfig from 'tailwind.config' // IMPORTANT that the path is NOT relative, only the file name
+import resolveConfig from 'tailwindcss/resolveConfig'
 
-export default resolveConfig(tailwindConfig as any)
+export default resolveConfig(tailwindConfig)

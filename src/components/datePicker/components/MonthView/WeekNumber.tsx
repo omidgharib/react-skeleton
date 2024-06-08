@@ -5,51 +5,50 @@ import type { OnClickWeekNumberFunc } from '../../types'
 const className = 'react-calendar__tile'
 
 type ButtonProps = Omit<
-    React.ButtonHTMLAttributes<HTMLButtonElement>,
-    'onClick'
+  React.ButtonHTMLAttributes<HTMLButtonElement>,
+  'onClick'
 > & {
-    onClickWeekNumber: OnClickWeekNumberFunc
+  onClickWeekNumber: OnClickWeekNumberFunc
 }
 
 type DivProps = React.HTMLAttributes<HTMLDivElement> & {
-    onClickWeekNumber?: undefined
+  onClickWeekNumber?: undefined
 }
 
 type WeekNumberProps<T = OnClickWeekNumberFunc | undefined> =
-    (T extends OnClickWeekNumberFunc ? ButtonProps : DivProps) & {
-        date: Date
-        weekNumber: number
-    }
+  (T extends OnClickWeekNumberFunc ? ButtonProps : DivProps) & {
+    date: Date
+    weekNumber: number
+  }
 
 export default function WeekNumber(props: WeekNumberProps) {
-    const { onClickWeekNumber, weekNumber } = props
+  const { onClickWeekNumber, weekNumber } = props
 
-    const children = <span>{weekNumber}</span>
+  const children = <span>{weekNumber}</span>
 
-    if (onClickWeekNumber) {
-        const { date, onClickWeekNumber, weekNumber, ...otherProps } = props
+  if (onClickWeekNumber) {
+    const { date, onClickWeekNumber, weekNumber, ...otherProps } = props
 
-        return (
-            <button
-                {...otherProps}
-                className={className}
-                onClick={(event) => onClickWeekNumber(weekNumber, date, event)}
-                type='button'
-            >
-                {children}
-            </button>
-        )
-    } else {
-        const { date, onClickWeekNumber, weekNumber, ...otherProps } = props
+    return (
+      <button
+        {...otherProps}
+        className={className}
+        onClick={(event) => onClickWeekNumber(weekNumber, date, event)}
+        type='button'
+      >
+        {children}
+      </button>
+    )
+  } else {
+    const { ...otherProps } = props
 
-        return (
-            // <div {...otherProps} className={className}>
-            //   {children}
-            // </div>
-            <div {...otherProps} className={className}>
-                {children}
-            </div>
-            // <div>abas</div>
-        )
-    }
+    return (
+      // <div {...otherProps} className={className}>
+      //   {children}
+      // </div>
+      <div {...otherProps} className={className}>
+        {children}
+      </div>
+    )
+  }
 }

@@ -21,8 +21,7 @@
     "noImplicitAny": false,
     "paths": {
       "@/*": ["src/*"]
-    },
-    
+    }
   },
-  "include": ["./src", "tailwind.config.js"],
+  "include": ["./src", "tailwind.config.ts"]
 }
