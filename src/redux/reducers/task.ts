@@ -1,25 +1,25 @@
-import { ITask } from '../../types/ITask'
-const inititalState: ITask[] = [
+import { TTask } from '@/types/task'
+const inititalState: TTask[] = [
   {
-    key: '1',
+    id: '1',
     title: 'title test',
     description: 'description test',
     completed: false,
   },
   {
-    key: '2',
+    id: '2',
     title: 'title test 2',
     description: 'description test 2',
     completed: true,
   },
   {
-    key: '3',
+    id: '3',
     title: 'title test 3',
     description: 'description test 3',
     completed: false,
   },
 ]
-const taskReducer = (state: ITask[] = inititalState, action) => {
+const taskReducer = (state: TTask[] = inititalState, action) => {
   switch (action.type) {
     case 'addTask': {
       return [...state, action.payload]

@@ -3,7 +3,7 @@ import { z } from 'zod'
 const TaskTypeValues = ['daily', 'weekly', 'monthly'] as const
 
 export const taskSchema = z.object({
-  key: z.string(),
+  id: z.string(),
   title: z.string(),
   description: z.string(),
   completed: z.boolean(),

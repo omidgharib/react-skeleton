@@ -22,7 +22,7 @@ const EditModal = ({ onClose, data }: EditModalProps) => {
   const onFinish = (values: TTask) => {
     console.log('Success:', values)
     const tasksClone = structuredClone(tasks)
-    const objIndex = tasksClone.findIndex((obj) => obj.key === data?.key)
+    const objIndex = tasksClone.findIndex((obj) => obj.id === data?.id)
 
     tasksClone[objIndex] = {
       ...data,

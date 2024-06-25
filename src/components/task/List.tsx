@@ -1,11 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
-import {
-  Button,
-  Input,
-  Space,
-  // Table,
-  Checkbox,
-} from 'antd'
+import { Button, Input, Space, Checkbox } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
 import type { InputRef } from 'antd'
 import type { CheckboxProps } from 'antd'
@@ -18,12 +12,13 @@ import { TTask, TTaskMonthSheet } from '../../types/task'
 import Table from './Table'
 import EditModal from './EditModal'
 import { RootState } from '@/redux/stores/store'
-// import TaskForm from "./Form";
+import taskApi from '@/services/taskApi'
 
 type DataIndex = keyof TTask
 const Tasks = () => {
   const dispatch = useDispatch()
-  const tasks: TTask[] = useSelector((state: RootState) => state.task)
+  const { data: tasks } = taskApi.useGetTasksQuery()
+  // const tasks: TTask[] = useSelector((state: RootState) => state.task)
   const taskSheet: TTaskMonthSheet[] = useSelector(
     (state: RootState) => state.taskSheet
   )
@@ -35,7 +30,7 @@ const Tasks = () => {
   useEffect(() => {
     // setTasks(tasksData?.tasks);
     // update and init tasks
-    initTaskSheet(tasks)
+    tasks && initTaskSheet(tasks)
   }, [tasks])
 
   const initTaskSheet = (tasks: TTask[]) => {
@@ -65,9 +60,8 @@ const Tasks = () => {
   const findTask = (element: TTask) => {
     // add to component utils
     // const taskSheet = taskSheetData?.taskSheet;
-    console.log('xxx', taskSheet)
     return (
-      taskSheet?.length > 0 && taskSheet.find((x) => x.task.key === element.key)
+      taskSheet?.length > 0 && taskSheet.find((x) => x.task.id === element.id)
     )
   }
 
@@ -138,10 +132,12 @@ const Tasks = () => {
 
   const onChange: CheckboxProps['onChange'] = (e) => {
     if (e.target?.name) {
-      const [key, day] = e.target.name.split('_')
+      const [id, day] = e.target.name.split('_')
       const newTaskSheetClone = structuredClone(taskSheet)
-      const item = newTaskSheetClone.find((x) => x.task.key === key)
+      const item = newTaskSheetClone.find((x) => +x.task.id === +id)
+      console.log('aaa', item, day, newTaskSheetClone, taskSheet, id)
       item.days[day].checked = e.target.checked
+      console.log('xxx', newTaskSheetClone)
       dispatch(updateTaskSheet(newTaskSheetClone))
     }
   }
@@ -149,13 +145,13 @@ const Tasks = () => {
   const deleteRecord = (record) => {
     let newTaskSheetClone = structuredClone(taskSheet)
     newTaskSheetClone = newTaskSheetClone.filter(function (obj) {
-      return obj.task.key !== record?.key
+      return obj.task.id !== record?.id
     })
     dispatch(updateTaskSheet(newTaskSheetClone))
   }
 
   const editRecord = (record) => {
-    const task = tasks.find((x) => x.key === record?.key)
+    const task = tasks.find((x) => x.id === record?.id)
     console.log('editRecord', record, task)
     setEditTaskData(task)
   }
@@ -277,7 +273,7 @@ const Tasks = () => {
           {/* <a>Invite {record.name}</a> */}
           <Checkbox
             // id={i.toString()}
-            name={record.key + '_' + i.toString()}
+            name={record.id + '_' + i.toString()}
             onChange={onChange}
           ></Checkbox>
         </Space>

@@ -1,5 +1,5 @@
 export interface ITask {
-  key: string
+  id: string
   title?: string
   description?: string
   completed?: boolean
