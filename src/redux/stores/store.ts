@@ -24,6 +24,7 @@ const rtkQueryErrorLogger: Middleware =
     if (isRejectedWithValue(action)) {
       console.warn('An Error occur while running RTK query', action)
       // if (action.payload.status === 403) api.dispatch(logout());
+      console.log(api)
     }
 
     return next(action)

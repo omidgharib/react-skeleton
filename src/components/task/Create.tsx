@@ -10,7 +10,7 @@ const CreateForm = () => {
   const dispatch = useDispatch()
   const [open, setOpen] = useState(false)
   const [confirmLoading, setConfirmLoading] = useState(false)
-  const [create, { isLoading, isError, error }] = taskApi.useCreateMutation()
+  const [create] = taskApi.useCreateMutation()
 
   const onFinish = (values: TTask) => {
     console.log('Success:', values)
@@ -39,7 +39,7 @@ const CreateForm = () => {
           dispatch(addTask(result))
           // navigate("/");
         }
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error('login error: ', err)
         // notifyApi.error({ message: err.message || err });
       }

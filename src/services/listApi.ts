@@ -7,7 +7,6 @@ import {
   IListQueryResponse,
   ISelectListResponse,
 } from '@/types/common'
-import { RootState } from '@/redux/stores/store'
 interface IListQueryArgs {
   url: string
   limit: number
